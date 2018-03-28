@@ -95,17 +95,17 @@
                     <h1><div class='container' id="realClock"></div></h1> 
                 </div>
 
-                {!! Form::open(['action' => 'AttendancesController@store', 'method' => 'POST']) !!}
+                {!! Form::open(['action' => 'AttendancesController@store', 'method' => 'POST', 'autocomplete' => 'off']) !!}
 
                 <div style="width:250px;margin:0 auto;">
 
                         <div class="form-group">                       
-
+                                <div style="width:150px;margin:0 auto;">
                             <div class="center-block">
                                 {{ Form::label('employeeid', 'ePLDT ID Number:' ) }} <br>
                                 {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
                             </div>
-
+                        </div>
                             <div class="row">
                                 <br> 
                                 <div class="pull-left">
