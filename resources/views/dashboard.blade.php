@@ -15,6 +15,27 @@
                     @endif
 
                     You are logged in!
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ePLDT ID</th>
+                            <th>Full Name</th>
+                            <th>Time - IN</th>
+                            <th>Time - OUT</th>
+                        </tr>
+                        @foreach ($attendances as $attendance)
+
+                            <tr>
+                                <td> EP{{ $attendance->emp_id }} </td>
+                                <td> {{ auth()->user()->name }}</td>
+                                <td> {{ $attendance->time_in }}</td>
+                                <td> {{ $attendance->time_out }} </td>
+                            </tr>
+    
+                            
+                        @endforeach
+
+                    </table>
                 </div>
             </div>
         </div>

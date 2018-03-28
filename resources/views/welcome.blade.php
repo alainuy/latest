@@ -1,5 +1,14 @@
 <!doctype html>
 @include('layouts.app')
+<style type="text/css">
+    #realClock {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 900px;
+            margin: auto;
+            text-align: center;
+            font-size: 150px;
+    }
+</style>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -79,47 +88,44 @@
             @endif  --}}
 
 <div class="container">
+
         <div class="jumbotron text-center">
                          
-                <div >
-                    <h1>Levaral</h1> 
+                <div>                   
+                    <h1><div class='container' id="realClock"></div></h1> 
                 </div>
 
                 {!! Form::open(['action' => 'AttendancesController@store', 'method' => 'POST']) !!}
-                    
-                    <div class="form-group">                       
 
-                        <div class="center-block">
-                            {{ Form::label('employeeid', 'Employee ID:' ) }} <br>
-                            {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
-                        </div>
+                <div style="width:250px;margin:0 auto;">
 
-                        <div class="row">
-                            <br> 
-                            <div class="pull-left">
-                                {{ Form::button('Time IN', ['type'=>'submit', 'name' => 'btnIn', 'value' => 'btnIn', 'class' => 'btn btn-primary btn-lg ']) }}
+                        <div class="form-group">                       
+
+                            <div class="center-block">
+                                {{ Form::label('employeeid', 'ePLDT ID Number:' ) }} <br>
+                                {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
                             </div>
-     
-                            <div class="pull-right">
-                                {{ Form::button('Time Out', ['type'=>'submit', 'name' => 'btnOut', 'value' => 'btnOut', 'class' => 'btn btn-danger btn-lg']) }}
-                            </div>
-                        </div>
-    
-                    </div>
 
+                            <div class="row">
+                                <br> 
+                                <div class="pull-left">
+                                    {{ Form::button('Time IN', ['type'=>'submit', 'name' => 'btnIn', 'value' => 'btnIn', 'class' => 'btn btn-primary btn-lg ']) }}
+                                </div>
+        
+                                <div class="pull-right">
+                                    {{ Form::button('Time Out', ['type'=>'submit', 'name' => 'btnOut', 'value' => 'btnOut', 'class' => 'btn btn-danger btn-lg']) }}
+                                </div>
+                            </div>
+        
+                        </div>
+                </div>
                 {!! Form::close() !!}
 
-                <div class="links text-center"><h3>
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a></h3>
-                </div>
-
         </div>
 
+</div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/timer.js') }}"></script>
 
-        </div>
     </body>
 </html>

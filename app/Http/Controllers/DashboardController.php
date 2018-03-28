@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Attendance;
+use App\User;
 use DB;
 
 class DashboardController extends Controller
@@ -25,7 +26,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('/dashboard');
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        return view('/dashboard')->with('attendances', $user->attendances);
     }
 
     // public function store(Request $request)

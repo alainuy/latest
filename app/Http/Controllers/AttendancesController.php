@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Attendance;
+use Carbon\Carbon;
 use DB;
 
 class AttendancesController extends Controller
@@ -40,32 +41,48 @@ class AttendancesController extends Controller
     public function store(Request $request)
     {
         //
-        $emp_id = $request->emp_id;
+        
 
         // verify first if emp_id entered is found in user db
- 
         // if (User::where('emp_id', '=', Input::get('emp_id'))->exists()) {
-        if (User::where('emp_id', '=', $emp_id)->exists()) {
 
+        $emp_id = $request->emp_id;
 
-            $usr_id = DB::table('users')->where('emp_id', '=', $emp_id)->select('id')->get();
-            
-            
-            
-            // $post = new Attendance;
-            // $post->emp_id = $request -> input('title');
-            // $post->body = $request -> input('body');
-            // $post->user_id = auth()->user()->id;
-            // $post->save();
-    
-            
-            // return 'emp_id to be save in db';
-            return $usr_id;
+        if (isset($_POST['btnIn'])) { 
 
+                if (User::where('emp_id', '=', $emp_id)->exists()) {
 
-        }      
-        else {
-            return 'Employee ID NOT FOUND';
+                        $now = Carbon::now();              
+                        $user_id = DB::table('users')->where('emp_id', '=', $emp_id)->value('id');
+
+                        $timein = new Attendance;
+                        $timein->emp_id = $emp_id;
+                        $timein->time_in = $now;
+                        $timein->user_id = $user_id;    
+                        $timein->save();    
+
+                        return redirect()->back();
+                }      
+                else {
+                        return 'Employee ID NOT FOUND';
+                }
+
+        } else if (isset($_POST['btnOut'])) { 
+
+                if (User::where('emp_id', '=', $emp_id)->exists()) {
+
+                    $now = Carbon::now();
+
+                    DB::table('attendances')
+                    ->where('emp_id', $emp_id)
+                    ->whereNull('time_out')
+                    ->update(['time_out' => $now, 'updated_at' => $now]);
+
+                    return redirect()->back();
+                }
+                else {
+                    return 'Employeed ID NOT FOUND';
+                }
         }
 
     }
