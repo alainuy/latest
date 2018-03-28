@@ -61,6 +61,7 @@ class AttendancesController extends Controller
                         $timein->user_id = $user_id;    
                         $timein->save();    
 
+                        
                         return redirect()->back();
                 }      
                 else {
