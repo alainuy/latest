@@ -16,8 +16,8 @@
 
                     You are logged in!
 
-                    <table class="table table-striped">
-                        <tr>
+                    <table class="table table-bordered table-hover ">
+                        <tr class="success">
                             <th>ePLDT ID</th>
                             <th>Full Name</th>
                             <th>Time - IN</th>
@@ -29,8 +29,8 @@
                                 <td> EP{{ $attendance->emp_id }} </td>
                                 <td> {{ auth()->user()->name }}</td>
                                 {{--  <td> {{ $attendance->time_in }}</td>  --}}
-                                <td> {{ Carbon\Carbon::parse($attendance->time_in)->format('m/d/Y - g:i A') }} </td>
-                                <td> {{ $attendance->time_out ? Carbon\Carbon::parse($attendance->time_out)->format('m/d/Y - g:i A') : '' }} </td>
+                                <td> {{ Carbon\Carbon::parse($attendance->time_in)->format('M-d-Y - g:i A') }} </td>
+                                <td> {{ $attendance->time_out ? Carbon\Carbon::parse($attendance->time_out)->format('M-d-Y - g:i A') : '' }} </td>
                                  {{--  <td> {{ $attendance->time_out }} </td>  --}}
 
                             </tr>

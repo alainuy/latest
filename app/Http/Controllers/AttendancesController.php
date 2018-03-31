@@ -46,29 +46,43 @@ class AttendancesController extends Controller
         // verify first if emp_id entered is found in user db
         // if (User::where('emp_id', '=', Input::get('emp_id'))->exists()) {
 
-        $emp_id = $request->emp_id;
+
 
         if (isset($_POST['btnIn'])) { 
 
-                if (User::where('emp_id', '=', $emp_id)->exists()) {
+            $emp_id = $request->emp_id;
 
+                if (User::where('emp_id', '=', $emp_id)->exists()) {
+                  
+                    if (Attendance::where('emp_id', $emp_id)->where('if_login', 1)->first()){
+
+                        return 'Hey, '.$emp_id.' you are ALREADY LOGGED IN';
+
+                    }
+                    else {
+                  
                         $now = Carbon::now();              
                         $user_id = DB::table('users')->where('emp_id', '=', $emp_id)->value('id');
 
                         $timein = new Attendance;
                         $timein->emp_id = $emp_id;
                         $timein->time_in = $now;
-                        $timein->user_id = $user_id;    
+                        $timein->user_id = $user_id;
+                        $timein->if_login = 1;
                         $timein->save();    
-
                         
+                        return 'Log IN Successful!';
                         return redirect()->back();
+                    }    
                 }      
+
                 else {
                         return 'Employee ID NOT FOUND';
                 }
 
         } else if (isset($_POST['btnOut'])) { 
+
+            $emp_id = $request->emp_id;
 
                 if (User::where('emp_id', '=', $emp_id)->exists()) {
 
@@ -77,7 +91,8 @@ class AttendancesController extends Controller
                     DB::table('attendances')
                     ->where('emp_id', $emp_id)
                     ->whereNull('time_out')
-                    ->update(['time_out' => $now, 'updated_at' => $now]);
+                    ->update(['time_out' => $now, 'if_login' => 0, 'updated_at' => $now]);
+
 
                     return redirect()->back();
                 }

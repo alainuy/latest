@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+    
 </head>
 <body>
     <div id="app">
@@ -21,8 +22,9 @@
         @yield('content')
 
     </div>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
 </body>
 </html>
