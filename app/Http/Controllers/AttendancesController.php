@@ -79,12 +79,14 @@ class AttendancesController extends Controller
                   
                         $now = Carbon::now();              
                         $user_id = DB::table('users')->where('emp_id', '=', $emp_id)->value('id');
+                        $name = DB::table('users')->where('emp_id', '=', $emp_id)->value('name');
 
                         $timein = new Attendance;
                         $timein->emp_id = $emp_id;
                         $timein->time_in = $now;
                         $timein->user_id = $user_id;
                         $timein->if_login = 1;
+                        $timein->name = $name;
                         $timein->save();    
                         
                         // return 'Log IN Successful!';

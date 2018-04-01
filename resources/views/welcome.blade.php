@@ -115,19 +115,31 @@
 
         <div class="text-center"> 
             <h3>Currently Logged IN:</h3>  
+        </div>
+        <div style="width:550px;margin:0 auto;">
             @if ( count($actives) > 0)
 
-                @foreach ($actives as $active)
 
-                    <div> 
-                       <h4>{{ $active->emp_id}} - {{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</h4> 
-                    </div>
-                    
-                @endforeach
+                    <table class="table table-bordered table-condensed ">
+                        <tr class="success">
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Time IN</th>
+                        </tr>
+
+                        @foreach ($actives as $active)
+
+                            <tr>
+                                <td>{{ $active->name}}</td>
+                                <td>{{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</td>
+                            </tr>
+
+                        @endforeach
+
+                    </table>              
                 
             @else
                 <h4>
-                    <p>NONE</p>
+                    <div class="text-center"><p>NONE as of the moment..</p></div> 
                 </h4>
             @endif
         </div>
