@@ -93,7 +93,7 @@
                                 <div style="width:150px;margin:0 auto;">
                             <div class="center-block">
                               <h3>{{ Form::label('employeeid', 'ePLDT ID #:' ) }}</h3>
-                                {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
+                                {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => 'ex => 8100']) }}                           
                             </div>
                         </div>
                             <div class="row">
@@ -114,7 +114,7 @@
         </div>
 
         <div class="text-center"> 
-            <h3>Currently Logged IN:</h3>  
+            <h4>Currently Logged IN:</h4>  
         </div>
 
         <div style="width:250px;margin:0 auto;">
@@ -124,14 +124,14 @@
 
                     <table class="table table-bordered table-condensed ">
                         <tr class="success">
-                            <th class="text-center">Name</th>
+                            {{--  <th class="text-center">Name</th>  --}}
                             {{--  <th class="text-center">Time IN</th>  --}}
                         </tr>
 
                         @foreach ($actives as $active)
 
                             <tr>
-                                <td>{{ $active->name}}</td>
+                                <td class="success">{{ $active->name}}</td>
                                 {{--  <td>{{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</td>  --}}
                             </tr>
 

@@ -29,7 +29,7 @@
                             <label for="emp_id" class="col-md-4 control-label">ePLDT ID Number</label>
 
                             <div class="col-md-6">
-                                <input id="emp_id" type="text" class="form-control" name="emp_id" value="{{ old('emp_id') }}" required autofocus>
+                                <input id="emp_id" type="text" class="form-control" name="emp_id" value="{{ old('emp_id') }}" placeholder="ex: 8000" required autofocus>
 
                                 @if ($errors->has('emp_id'))
                                     <span class="help-block">

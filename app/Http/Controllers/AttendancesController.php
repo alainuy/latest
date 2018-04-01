@@ -71,7 +71,6 @@ class AttendancesController extends Controller
                   
                     if (Attendance::where('emp_id', $emp_id)->where('if_login', 1)->first()){
 
-                        // return 'Hey, '.$emp_id.' you are ALREADY LOGGED IN';
                         Alert::info('Hey, '.$name.' you are ALREADY LOGGED IN')->persistent('OK');
                         return redirect()->back();
 
@@ -98,7 +97,7 @@ class AttendancesController extends Controller
                 }      
 
                 else {                    
-                    Alert::error('Employee ID NOT FOUND', 'Oops!')->persistent('OK');
+                    Alert::error('ePLDT ID NOT FOUND', 'Oops!')->persistent('OK');
                     return redirect()->back();
 
                         
@@ -112,6 +111,8 @@ class AttendancesController extends Controller
 
                 if (User::where('emp_id', '=', $emp_id)->exists()) {
 
+
+
                     $now = Carbon::now();
 
                     DB::table('attendances')
@@ -121,9 +122,10 @@ class AttendancesController extends Controller
 
                     Alert::success('', 'Bye, '.$name.' - Time OUT Success')->autoclose(4000);
                     return redirect()->back();
+                    
                 }
                 else {
-                    Alert::error('Employee ID NOT FOUND', 'Oops!')->persistent('OK');
+                    Alert::error('ePLDT ID NOT FOUND', 'Oops!')->persistent('OK');
                     return redirect()->back();
                 }
         }
