@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+    {{--  <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>  --}}
+    <script src="{{ asset('js/all.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/sweetalert.min.css') }}">
     
 </head>
 <body>
@@ -23,8 +25,9 @@
 
     </div>
     <!-- Scripts -->
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
+    @include('sweet::alert')
 
 </body>
 </html>

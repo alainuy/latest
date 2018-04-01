@@ -8,6 +8,7 @@ use App\User;
 use App\Attendance;
 use Carbon\Carbon;
 use DB;
+use Alert;
 
 class AttendancesController extends Controller
 {
@@ -19,9 +20,22 @@ class AttendancesController extends Controller
     public function index()
     {
         //
-        return view('welcome');
+        // show currently logged in users to main page
+        $actives = Attendance::where('if_login', 1)->get();
+        return view('welcome')->with('actives', $actives);
+        
+        // return view('welcome');
     }
 
+    
+    public function active(){
+ 
+
+
+
+    }
+   
+   
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +70,9 @@ class AttendancesController extends Controller
                   
                     if (Attendance::where('emp_id', $emp_id)->where('if_login', 1)->first()){
 
-                        return 'Hey, '.$emp_id.' you are ALREADY LOGGED IN';
+                        // return 'Hey, '.$emp_id.' you are ALREADY LOGGED IN';
+                        Alert::info('Hey, '.$emp_id.' you are ALREADY LOGGED IN')->persistent('OK');
+                        return redirect()->back();
 
                     }
                     else {
@@ -71,13 +87,18 @@ class AttendancesController extends Controller
                         $timein->if_login = 1;
                         $timein->save();    
                         
-                        return 'Log IN Successful!';
+                        // return 'Log IN Successful!';
+
+                        Alert::success('', 'Hi, '.$emp_id.' Time IN Success')->autoclose(4000);
                         return redirect()->back();
                     }    
                 }      
 
-                else {
-                        return 'Employee ID NOT FOUND';
+                else {                    
+                    Alert::error('Employee ID NOT FOUND', 'Oops!')->persistent('OK');
+                    return redirect()->back();
+
+                        
                 }
 
         } else if (isset($_POST['btnOut'])) { 
@@ -93,11 +114,12 @@ class AttendancesController extends Controller
                     ->whereNull('time_out')
                     ->update(['time_out' => $now, 'if_login' => 0, 'updated_at' => $now]);
 
-
+                    Alert::success('', 'Bye, '.$emp_id.' Time OUT Success')->autoclose(4000);
                     return redirect()->back();
                 }
                 else {
-                    return 'Employeed ID NOT FOUND';
+                    Alert::error('Employee ID NOT FOUND', 'Oops!')->persistent('OK');
+                    return redirect()->back();
                 }
         }
 
@@ -111,7 +133,8 @@ class AttendancesController extends Controller
      */
     public function show($id)
     {
-        //
+        // 
+
     }
 
     /**

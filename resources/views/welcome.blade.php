@@ -92,7 +92,7 @@
                         <div class="form-group">                       
                                 <div style="width:150px;margin:0 auto;">
                             <div class="center-block">
-                                {{ Form::label('employeeid', 'ePLDT ID Number:' ) }} <br>
+                              <h3>{{ Form::label('employeeid', 'ePLDT ID #:' ) }}</h3>
                                 {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
                             </div>
                         </div>
@@ -111,6 +111,25 @@
                 </div>
                 {!! Form::close() !!}
 
+        </div>
+
+        <div class="text-center"> 
+            <h3>Currently Logged IN:</h3>  
+            @if ( count($actives) > 0)
+
+                @foreach ($actives as $active)
+
+                    <div> 
+                       <h4>{{ $active->emp_id}} - {{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</h4> 
+                    </div>
+                    
+                @endforeach
+                
+            @else
+                <h4>
+                    <p>NONE</p>
+                </h4>
+            @endif
         </div>
 
 </div>
