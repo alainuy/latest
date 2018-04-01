@@ -65,13 +65,14 @@ class AttendancesController extends Controller
         if (isset($_POST['btnIn'])) { 
 
             $emp_id = $request->emp_id;
+            $name = DB::table('users')->where('emp_id', '=', $emp_id)->value('name');
 
                 if (User::where('emp_id', '=', $emp_id)->exists()) {
                   
                     if (Attendance::where('emp_id', $emp_id)->where('if_login', 1)->first()){
 
                         // return 'Hey, '.$emp_id.' you are ALREADY LOGGED IN';
-                        Alert::info('Hey, '.$emp_id.' you are ALREADY LOGGED IN')->persistent('OK');
+                        Alert::info('Hey, '.$name.' you are ALREADY LOGGED IN')->persistent('OK');
                         return redirect()->back();
 
                     }
@@ -91,7 +92,7 @@ class AttendancesController extends Controller
                         
                         // return 'Log IN Successful!';
 
-                        Alert::success('', 'Hi, '.$emp_id.' Time IN Success')->autoclose(4000);
+                        Alert::success('', 'Hi, '.$name.' - Time IN Success')->autoclose(4000);
                         return redirect()->back();
                     }    
                 }      
@@ -106,6 +107,8 @@ class AttendancesController extends Controller
         } else if (isset($_POST['btnOut'])) { 
 
             $emp_id = $request->emp_id;
+            $name = DB::table('users')->where('emp_id', '=', $emp_id)->value('name');
+
 
                 if (User::where('emp_id', '=', $emp_id)->exists()) {
 
@@ -116,7 +119,7 @@ class AttendancesController extends Controller
                     ->whereNull('time_out')
                     ->update(['time_out' => $now, 'if_login' => 0, 'updated_at' => $now]);
 
-                    Alert::success('', 'Bye, '.$emp_id.' Time OUT Success')->autoclose(4000);
+                    Alert::success('', 'Bye, '.$name.' - Time OUT Success')->autoclose(4000);
                     return redirect()->back();
                 }
                 else {

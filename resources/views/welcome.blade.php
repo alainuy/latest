@@ -116,21 +116,23 @@
         <div class="text-center"> 
             <h3>Currently Logged IN:</h3>  
         </div>
-        <div style="width:550px;margin:0 auto;">
+
+        <div style="width:250px;margin:0 auto;">
+
             @if ( count($actives) > 0)
 
 
                     <table class="table table-bordered table-condensed ">
                         <tr class="success">
                             <th class="text-center">Name</th>
-                            <th class="text-center">Time IN</th>
+                            {{--  <th class="text-center">Time IN</th>  --}}
                         </tr>
 
                         @foreach ($actives as $active)
 
                             <tr>
                                 <td>{{ $active->name}}</td>
-                                <td>{{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</td>
+                                {{--  <td>{{ Carbon\Carbon::parse($active->time_in)->format('M-d-Y - g:i A')  }}</td>  --}}
                             </tr>
 
                         @endforeach

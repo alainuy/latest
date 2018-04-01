@@ -27,12 +27,9 @@
 
                             <tr>
                                 <td> EP{{ $attendance->emp_id }} </td>
-                                <td> {{ auth()->user()->name }}</td>
-                                {{--  <td> {{ $attendance->time_in }}</td>  --}}
+                                <td> {{ $attendance->name }}</td>
                                 <td> {{ Carbon\Carbon::parse($attendance->time_in)->format('M-d-Y - g:i A') }} </td>
                                 <td> {{ $attendance->time_out ? Carbon\Carbon::parse($attendance->time_out)->format('M-d-Y - g:i A') : '' }} </td>
-                                 {{--  <td> {{ $attendance->time_out }} </td>  --}}
-
                             </tr>
     
                             
