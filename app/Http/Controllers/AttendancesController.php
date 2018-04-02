@@ -108,10 +108,7 @@ class AttendancesController extends Controller
             $emp_id = $request->emp_id;
             $name = DB::table('users')->where('emp_id', '=', $emp_id)->value('name');
 
-
                 if (User::where('emp_id', '=', $emp_id)->exists()) {
-
-
 
                     $now = Carbon::now();
 

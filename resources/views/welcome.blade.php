@@ -18,7 +18,7 @@
         <title>TitO</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> --}}
 
         <!-- Styles -->
         {{--  <style>
@@ -93,7 +93,7 @@
                                 <div style="width:150px;margin:0 auto;">
                             <div class="center-block">
                               <h3>{{ Form::label('employeeid', 'ePLDT ID #:' ) }}</h3>
-                                {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'maxlength' => '4', 'placeholder' => 'ex => 8100']) }}                           
+                                {{ Form::text('emp_id', '', ['class' => 'form-control form-control-inline','required', 'autofocus', 'size' => '3', 'style'=>'height:60px', 'style'=>'font-size:30px', 'maxlength' => '4', 'placeholder' => '8100']) }}                           
                             </div>
                         </div>
                             <div class="row">
