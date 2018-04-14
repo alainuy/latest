@@ -28,14 +28,17 @@
                             <tr>
                                 <td> EP{{ $attendance->emp_id }} </td>
                                 <td> {{ $attendance->name }}</td>
-                                <td> {{ Carbon\Carbon::parse($attendance->time_in)->format('D - M-d-Y - g:i A') }} </td>
-                                <td> {{ $attendance->time_out ? Carbon\Carbon::parse($attendance->time_out)->format('D - M-d-Y - g:i A') : '' }} </td>
+                                <td> {{ Carbon\Carbon::parse($attendance->time_in)->format('l - d/F/Y - g:i A') }} </td>
+                                <td> {{ $attendance->time_out ? Carbon\Carbon::parse($attendance->time_out)->format('l - d/F/Y - g:i A') : '' }} </td>
                             </tr>
     
                             
                         @endforeach
 
                     </table>
+
+                    {{ $attendances->links() }}
+
                 </div>
             </div>
         </div>

@@ -26,10 +26,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
+//        $user_id = auth()->user()->id;
+//        $user = User::find($user_id);
+//        $user = User::find($user_id)->attendance()->paginate(10);
+//        return view('/dashboard')->with('attendances', $user->attendances);
 
-        return view('/dashboard')->with('attendances', $user->attendances);
+        $attendances = auth()->user()->attendances()->orderBy('time_in', 'asc')->paginate(12);
+        return view('/dashboard')->with('attendances', $attendances);
     }
 
     // public function store(Request $request)
